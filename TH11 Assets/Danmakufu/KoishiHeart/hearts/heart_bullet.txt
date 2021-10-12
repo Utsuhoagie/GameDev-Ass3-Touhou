@@ -1,0 +1,12 @@
+#UserShotData
+	
+	ShotImage = ".\img\heart.png"
+	
+	//イドの明るめの弾(ピンク)
+	ShotData{id = 1    rect = (0,0,30,30)}
+	//イドの暗めの弾(紫)
+	ShotData{id = 2    rect = (31,0,61,30)}
+	//エゴの緑の弾(緑)
+	ShotData{id = 3    rect = (62,0,92,30)}
+	//エゴの青の弾(青)
+	ShotData{id = 4    rect = (93,0,123,30)}

@@ -1,0 +1,219 @@
+<html><body>
+<font size="4"><b>kShotについて</b></font><br><br>
+
+と～ほ～GC（
+<a href="http://www.geocities.co.jp/SiliconValley-Oakland/9951/">
+http://www.geocities.co.jp/SiliconValley-Oakland/9951/</a>
+）<br>
+にて公開されている「東方弾幕風」用に作成された弾画像です<br>
+
+
+<br><br>
+<font size="4"><b>番号について</b></font><br><br>
+
+RED、GREEN、BLUE、YELLOW、PURPLE、AQUA、ORANGE、<b>VIOLET</b>、<b>SKY</b>、WHITE
+を準備しています<br>
+組み込みの弾と区別するため、頭に「k」を付けています<br><br>
+
+↓にREDの例だけ示します（アルファチャンネルを無視した画像です）<br>
+
+<table border>
+
+<tr><td>kRED01</td>
+<td>･･<img src="ks_help\01.png"></td></tr>
+
+<tr><td>kRED02</td>
+<td>･･<img src="ks_help\02.png"></td></tr>
+
+<tr><td>03</td><td><font size="2">欠番（大弾）</font></td></tr>
+
+<tr><td>kRED04</td>
+<td>･･<img src="ks_help\04.png"></td></tr>
+
+<tr><td>kRED05</td>
+<td>･･<img src="ks_help\05.png"></td></tr>
+
+<tr><td><b>kRED06</b></td>
+<td>･･<img src="ks_help\06.png">（ウィルス弾）</td></tr>
+
+<tr><td><b>kRED07</b></td>
+<td>･･<img src="ks_help\07.png">（光る弾）</td></tr>
+
+<tr><td>11</td><td><font size="2">欠番（レーザー用弾？）</font></td></tr>
+
+<tr><td>kRED12</td>
+<td>･･<img src="ks_help\12.png"></td></tr>
+
+<tr><td><b>kRED13</b></td>
+<td>･･<img src="ks_help\13.png">（楕円弾）</td></tr>
+
+<tr><td>kRED21</td>
+<td>･･<img src="ks_help\21.png"></td></tr>
+
+<tr><td>22</td><td><font size="2">欠番（蝶弾）</font></td></tr>
+
+<tr><td>kRED23</td>
+<td>･･<img src="ks_help\23.png"></td></tr>
+
+<tr><td><b>kRED24</b></td>
+<td>･･<img src="ks_help\24.png">（銃弾）</td></tr>
+
+<tr><td>3*</td><td><font size="2">欠番（31:クナイ弾）（32:ナイフ）</font></td></tr>
+
+<tr><td><b>kRED41</b></td>
+<td>･･<img src="ks_help\41.png">（札弾）</td></tr>
+
+<tr><td><b>kRED42</b></td>
+<td>･･<img src="ks_help\42.png">（星弾小）</td></tr>
+
+</table><br>
+（黒塗り部分は当たり判定の目安になっているかも）<br>
+
+<br><br>
+<font size="4"><b>使用方法</b></font><br><br>
+
+「kshotData.txt」が弾データを定義したファイルです<br>
+これを読み込むことで、kshot.pngのこの範囲がkRED01～みたいなのが定義されます<br><br>
+
+「lib_kshot.txt」がkRED01等の変数宣言のカタマリです<br>
+これを読み込まない場合kRED01等の番号が使用できません<br><br>
+
+↓スクリプトはこんな感じになります（ファイルパスは各自で適当に直してください）
+<table border width="100%"><td><PRE>
+script_enemy_main{
+	<font color="#0000FF">let</font> csd=GetCurrentScriptDirectory;
+	@Initialize
+	{
+		LoadUserShotData(csd~<font color="#FF0000">"kshotData.txt"</font>);
+	}
+	@MainLoop{}
+	@DrawLoop {}
+	@Finalize {}
+	#include_function<font color="#FF0000">".\lib_kshot.txt"</font>
+}
+</PRE></td></table><br>
+
+
+<br><br>
+<font size="4"><b>使用条件</b></font><br><br>
+
+　・　一次製作元に迷惑をかけないこと<br>
+　・　悪意がないこと<br>
+　・　何か問題が起きても自分で解決すること<br>
+　・　東方を愛すること<br><br>
+
+最低限上記のことは守ってください<br>
+上記のことが守れるなら、まるで自分が作った弾画像のように扱っていいです<br><br>
+ついでに<br>
+　・　他人に迷惑をかけない<br>
+　・　弾画像に不満があっても文句言わない<br>
+　・　txtファイルの方に問題があったら報告くれる<br>
+　・　関係ないけど洞窟いいね。<br>
+こんなとこも気にかけてもらいたいです<br><br>
+
+readmeとかの記述は書かないか、「kShotを使用しています」程度でいいです<br>
+出展元をどうしても明記したいなら「東方幻想板　弾幕風スレ」とでも書いておけばいいです<br>
+また作者名が必要なら「不詳」と書いておけばいいと思います<br>
+
+
+<br><br>
+<font size="4"><b>同梱してあるスクリプトについて</b></font><br><br>
+
+「kShot.png」、「kshotData.txt」、「lib_kshot」、「circle.png」と一緒に「plural.dat」を<br>
+弾幕風の「script」フォルダに入れると「弾サンプル連続再生」を再生できます<br>
+kShotと弾幕風の組み込みの弾の画像を比較するためのもので、<br>
+奇数回目に放たれる弾幕がkShot、<br>
+偶数回目に放たれる弾幕が弾幕風組み込みのものになってます<br>
+偶数、奇数で分けるのが難しいものは、右半分が弾幕風組み込みのものになってます<br>
+いちいち連続で見るのが面倒な場合「all.txt」の「task TMain」をそれとなく弄ると良いです<br>
+弄らないで「all.txt」の弾幕を見ても見れるものでは無いと思います<br>
+
+
+<br><br>
+<font size="4"><b>その他仕様メモ</b></font><br><br>
+
+「lib_kshot.txt」をメモ帳などで開いて「k」で「置換」してやれば<br>
+接頭語は「k」以外のモノに変えられます<br>
+接尾語も同様に「01」等で置換すれば変えられます<br><br>
+
+「VIOLET」はBLUEとPURPLEの間色、「SKY」はBLUEとAQUAの間色です<br>
+（ちなみに「ORANGE」はREDとYELLOWの間色）<br><br>
+
+06系のウィルス弾は勝手にくるくる自転します<br>
+不要な場合「kshotData.txt」の「id=111～120」の「angular_velocity」を削ってください<br><br>
+
+「番号について」の例を見る限りではかなり明るく見える弾も<br>
+実際に弾幕風で使用するといい感じの明るさに見えたりします<br><br>
+
+アルファチャンネル（透明度）の設定も一応ついていますが、<br>
+半透明かあるか無いか、の３パターンのかなりいい加減なものです<br>
+５パターンもあるとかなり綺麗なんでしょうが技術力が足りません･･･<br>
+
+
+<br><br>
+<font size="4"><b>関連リンク</b></font><br><br>
+
+「東方project」製作元<br>
+【上海アリス幻樂団】　<a href="http://www16.big.or.jp/~zun/">http://www16.big.or.jp/~zun/</a>
+<br><br>
+
+「東方弾幕風」製作元<br>
+【と～ほ～GC】　<a href="http://www.geocities.co.jp/SiliconValley-Oakland/9951/">
+http://www.geocities.co.jp/SiliconValley-Oakland/9951/</a>
+<br><br>
+
+<br>
+【弾幕風Wiki】　<a href="http://f27.aaa.livedoor.jp/~thdmhul/pukiwiki/pukiwiki.php">
+http://f27.aaa.livedoor.jp/~thdmhul/pukiwiki/pukiwiki.php</a>
+<br>
+
+<br>
+
+<br><br>
+<font size="4">あとがき</font><br><br>
+
+kShot.pngの上から順にだいたい作った順になっています<br>
+途中黒塗りの中間がありますが、そこから上が妖々夢以前<br>
+下が花映塚以降を見ながら目コピしたみたいな感じです<br>
+ちなみに色数も上が4色+白、下が8色+白になっています<br><br>
+
+札弾とウィルス弾は目コピが難しかったので<br>
+かなり適当に打ち込んで、その後自力で調整みたいな感じになっています<br>
+ので、本家と比べてもあんまり似てないと思います<br><br>
+
+＜勝手な基準＞<br>
+0*系は点対称　そのまんま丸とか円とか<br>
+1*系は左右対称　細長い。楕円とか<br>
+2*系は方向系　尖ってる。刺さりそう<br>
+3*系は小アイテム　形にこだわってる<br>
+4*系はキャラもの　札は霊夢。星は魔理沙<br><br>
+
+製作ソフト<br>
+EDGE2　：ドット打ち込み　フリーだと機能制限があるけど、それでもかなり使える良ソフト<br>
+shin's PNG Editer　：アルファチャンネル設定　設定用のbmpからアルファチャンネル付pngを作れる<br>
+MSペイント　：総合的に色々　起動の速さ、動作のわかりやすさ、使いやすさは一番<br>
+Macromedia Flash 8　：「名称未設定」の作成　FLASH時代に購入したもの。<br>
+　　　　　　　　　　　　　　ActionScriptはユーザーインターフェースを直感で作れるのがいいね<br>
+
+<br><br>
+<font size="4">「名称未設定」について</font><br><br>
+
+<b>*「名称未設定」は再配布しないで下さい*</b><br><br>
+
+「-1」はshotData出力用<br>
+横一列に並んだ弾画像をshotData用に変換するときに使う<br>
+idが最初のid、loop_nの回数だけ繰り返す<br>
+topが上端、btmが下端<br>
+leftが左端の弾の左端<br>
+widthは横幅+1のイメージで入力するとうまくいきます<br>
++alphaはdelay_colorの続きです。「 」（半角スペース）とか入れておくと良いです<br>
+delay_colorは改行で区切られます<br><br>
+
+「-2」はlib_shot出力用<br>
+id、loop_nは「-1」と同じ<br>
+head-が接頭語<br>
+-tailが接尾語<br>
+color_nが接頭語と接尾語の間に挟まれるものです<br>
+改行で区切られます<br>
+
+</body></html>

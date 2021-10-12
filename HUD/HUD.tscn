@@ -1,0 +1,110 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://HUD/HUD.gd" type="Script" id=2]
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LifeLabel" type="Label" parent="."]
+margin_left = 416.0
+margin_top = 144.0
+margin_right = 480.0
+margin_bottom = 176.0
+text = "Lives :"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LifeContainer" type="HBoxContainer" parent="."]
+margin_left = 480.0
+margin_top = 136.0
+margin_right = 608.0
+margin_bottom = 184.0
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BombLabel" type="Label" parent="."]
+margin_left = 416.0
+margin_top = 208.0
+margin_right = 480.0
+margin_bottom = 240.0
+text = "Bombs :"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BombContainer" type="HBoxContainer" parent="."]
+margin_left = 480.0
+margin_top = 208.0
+margin_right = 608.0
+margin_bottom = 240.0
+custom_constants/separation = 8
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PowerLabel" type="Label" parent="."]
+margin_left = 416.0
+margin_top = 288.0
+margin_right = 544.0
+margin_bottom = 320.0
+text = "Power :         / 4.0"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Power" type="Label" parent="."]
+margin_left = 472.0
+margin_top = 288.0
+margin_right = 504.0
+margin_bottom = 320.0
+text = "1.0"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GrazeLabel" type="Label" parent="."]
+margin_left = 416.0
+margin_top = 320.0
+margin_right = 480.0
+margin_bottom = 352.0
+text = "Graze :"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Graze" type="Label" parent="."]
+margin_left = 472.0
+margin_top = 320.0
+margin_right = 512.0
+margin_bottom = 352.0
+text = "0"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SepLine" type="Line2D" parent="."]
+position = Vector2( 256, 40 )
+points = PoolVector2Array( 128, 600, 128, -40 )
+width = 4.0
+default_color = Color( 0.4, 0.501961, 1, 1 )
+
+[node name="BossCutinSpawner" type="Node2D" parent="."]
+position = Vector2( 0, -256 )
+
+[node name="BossCutinTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="BossCutinTimer" to="." method="_on_BossCutinTimer_timeout"]

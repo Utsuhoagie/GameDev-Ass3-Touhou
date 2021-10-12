@@ -1,0 +1,188 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Assets/space_shooter_pack/Graphics/spritesheets/explosion.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Hurtbox.png" type="Texture" id=2]
+[ext_resource path="res://Assets/space_shooter_pack/Graphics/spritesheets/ship.png" type="Texture" id=3]
+[ext_resource path="res://Objects/Player/Player.gd" type="Script" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 32, 24, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 16, 24 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 16, 24 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": false,
+"name": "Left",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), null ],
+"loop": false,
+"name": "Die",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "Straight",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 8 ), null, SubResource( 8 ), null, SubResource( 8 ), null, SubResource( 8 ), null, SubResource( 8 ), null, SubResource( 8 ), null, SubResource( 8 ) ],
+"loop": false,
+"name": "Respawn",
+"speed": 8.0
+}, {
+"frames": [ SubResource( 10 ), SubResource( 11 ) ],
+"loop": false,
+"name": "Right",
+"speed": 15.0
+} ]
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ null ],
+"loop": false,
+"name": "Base",
+"speed": 1.0
+}, {
+"frames": [ null, SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": false,
+"name": "Hurtbox",
+"speed": 30.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=17]
+radius = 16.0
+height = 0.0
+
+[sub_resource type="CircleShape2D" id=19]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id=18]
+radius = 8.32056
+
+[node name="Player" type="KinematicBody2D"]
+z_index = -1
+collision_mask = 48
+script = ExtResource( 4 )
+
+[node name="AnimSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 2, 2 )
+frames = SubResource( 12 )
+animation = "Respawn"
+frame = 12
+
+[node name="Hurtbox" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -8 )
+frames = SubResource( 16 )
+animation = "Base"
+
+[node name="MoveCol" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, -8 )
+shape = SubResource( 17 )
+
+[node name="GrazeArea" type="Area2D" parent="."]
+
+[node name="GrazeCol" type="CollisionShape2D" parent="GrazeArea"]
+position = Vector2( 0, -8 )
+shape = SubResource( 19 )
+
+[node name="HitColArea" type="Area2D" parent="."]
+gravity_vec = Vector2( 0, 0 )
+collision_mask = 10
+
+[node name="HitCol" type="CollisionShape2D" parent="HitColArea"]
+position = Vector2( 0, -10 )
+shape = SubResource( 18 )
+
+[node name="FirePos" type="Node2D" parent="."]
+
+[node name="LGun" type="Node2D" parent="FirePos"]
+position = Vector2( -15.9195, -11.7992 )
+
+[node name="RGun" type="Node2D" parent="FirePos"]
+position = Vector2( 14.8838, -12.4785 )
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 0.001
+one_shot = true
+
+[node name="DieTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RespawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FlickerTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="GrazeArea" to="." method="_on_GrazeArea_area_entered"]
+[connection signal="area_entered" from="HitColArea" to="." method="_on_HitColArea_area_entered"]
+[connection signal="area_exited" from="HitColArea" to="." method="_on_HitColArea_area_exited"]
+[connection signal="timeout" from="DieTimer" to="." method="_on_DieTimer_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]

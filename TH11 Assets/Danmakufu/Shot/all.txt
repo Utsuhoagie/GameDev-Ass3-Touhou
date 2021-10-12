@@ -1,0 +1,332 @@
+#東方弾幕風
+#Title[弾サンプル全部再生]
+#Text[弾画像を確認できない]
+#ScriptVersion[2]
+#Player[FREE]
+
+script_enemy_main{
+let csd=GetCurrentScriptDirectory;
+let img=csd~"circle.png";
+
+@Initialize{
+  LoadUserShotData(csd~"kshotData.txt");
+  SetLife(500);
+  //SetTimer(24);
+  MagicCircle(false);
+  SetShotAutoDeleteClip(64,64,64,64);
+  SetShotAutoDeleteClip(264,364,264,64);
+
+  LoadGraphic(img);SetTexture(img);
+  SetGraphicRect(0, 0, 63, 63);//グラフィックの矩形選択（左上右下）
+  TMain;
+}
+
+@MainLoop{
+  SetCollisionA(GetX, GetY, 24);SetCollisionB(GetX, GetY, 24);
+  yield;
+}
+
+@DrawLoop {DrawGraphic(GetX, GetY);}
+@Finalize {DeleteGraphic(img);}
+
+task TMain{
+  SetMovePosition03(GetCenterX,120,10,5);
+  wait(90);
+  shot01;
+  shot02;
+  shot03;
+  shot04;
+  shot05;
+  shot06;
+  shot07;
+  shot08;
+  shot09;
+  shot10;
+}
+
+task shot10{
+  let w=1;
+  loop{
+  let y=GetPlayerY+rand(-10,10);
+  let ar=rand(0,180);
+  loop(10){
+   let _y=y;
+   while(_y>GetClipMinY-40){sh(w,_y,ar);_y-=60;}
+   _y=y+60;
+   while(_y<GetClipMaxY+40){sh(w,_y,ar);_y+=60;}
+   let _y=y-30;
+   while(_y>GetClipMinY-40){sh(-w,_y,ar);_y-=60;}
+   _y=y+30;
+   while(_y<GetClipMaxY+40){sh(-w,_y,ar);_y+=60;}
+   wait(20);
+  }
+  wait(60);w*=-1;
+  }
+task sh(t,y,ar){
+  let x;
+  if(t==1){x=GetClipMinX;}
+  else{x=GetClipMaxX;}
+  let obj=CreateShot01(x,y,0,0,kBLUE07,10);
+  let a=(x*2)%360+90*t+ar;
+  Obj_SetY(obj,y+sin(a)*20);
+  wait(10);
+  while(x<GetClipMaxX+30 && x>GetClipMinX-30){
+   Obj_SetX(obj,x);
+   x+=1*t;
+   Obj_SetY(obj,y+sin(a)*20);
+   a=(x*2)%360+90*t+ar;
+  yield;}
+  Obj_Delete(obj);
+}
+}
+
+task shot09{
+  loop{
+   sh;
+   CreateShot01(GetX,GetY,1,GetAngleToPlayer+rand(-5,5),kAQUA06,10);
+  wait(5);}
+  task sh{
+   let x=rand(GetClipMinX,GetClipMaxX);
+   let y=rand(GetClipMinY,GetCenterY);
+   let spd=rand(1,3);
+   let dir=rand(60,120);
+   let a=rand(-5,5);
+   let obj=CreateShot01(x,y,0,dir,kRED42+rand_int(0,8),20);
+   wait(20);
+   while(x<GetClipMaxX+10 && x>GetClipMinX-10 && y<GetClipMaxY+10){
+    Obj_SetPosition(obj,x,y);
+    Obj_SetAngle(obj,Obj_GetAngle(obj)+a);
+    x+=cos(dir)*spd;y+=sin(dir)*spd;
+   yield;}
+   Obj_Delete(obj);
+  }
+}
+
+task shot08{
+  loop{
+   sh;wait(60);
+   sh2;wait(60);
+  }
+task sh2{
+  let dir=GetAngleToPlayer;
+  ascent(i in 0..3){
+  ascent(w in 0..2){let _w=w*2-1;
+   CreateShotA(0,GetX,GetY,0);
+   SetShotDataA(0,0,4,dir+(60+60/2*i)*_w,0,-4/60,0,kBLUE13);
+   SetShotDirectionType(PLAYER);
+   SetShotDataA(0,60,3,0,0,-0,0,kBLUE13);
+   ascent(h in 0..2){let _w=1;
+   loop(2){_w*=-1;
+    CreateShotA(1,0,0,0);
+    SetShotDataA(1,0,0,NULL,0,-0,0,kBLUE13);
+    SetShotDataA(1,1,3,(h+1)*1.5*_w,0,-0,0,kBLUE13);
+    AddShot(60,0,1,0);
+   }}
+   SetShotDirectionType(ABSOLUTE);
+   FireShot(0);
+  }
+  wait(20);}
+}
+task sh{
+  let dir=GetAngleToPlayer;
+  loop(12){
+   ascent(i in 0..11){
+    ascent(w in 0..2){let _w=w*2-1;
+    CreateShotA(0,GetX,GetY,0);
+    let ang=dir+(210-i*90/10)*_w;
+    SetShotDataA(0,0,2,ang,-180/60*_w,-0,0,kBLUE24);
+    SetShotDataA(0,60,NULL,NULL,0,-0,0,kBLUE24);
+    FireShot(0);
+    }
+   }
+  wait(5);}
+}
+}
+
+task shot07{
+  loop{
+   sh(GetAngleToPlayer,kWHITE41);
+   wait(60);
+   sh(GetAngleToPlayer+60,kVIOLET41);
+   sh(GetAngleToPlayer-60,kSKY41);
+   wait(60);
+  }
+task sh(dir,color){
+  ascent(i in 1..31){
+   ascent(h in 0..3){
+   CreateShot01(GetX,GetY,3-h,dir+180+i*180/30,color,0);
+   CreateShot01(GetX,GetY,3-h,dir+180-i*180/30,color,0);
+   }
+  wait(2);}
+}
+}
+
+task shot06{
+  let t=-1;
+  loop{t*=-1;
+   sh;
+   loop(3){sh2;wait(30);}
+  }
+function sh2{
+  let color;
+  if(t==1){color=kBLUE05;}else{color=BLUE05;}
+  ascent(i in 0..24){
+   CreateShot01(GetX,GetY,3,GetAngleToPlayer+i*360/24,color,15);
+  }
+}
+function sh{
+  let color;
+  if(t==1){color=kAQUA02;}else{color=AQUA02;}
+  CreateShotA(0,GetX,GetY,0);
+  SetShotDataA(0,0,4,GetAngleToPlayer,0,-4/60,0,color);
+  SetShotDataA(0,60,1,GetAngleToPlayer,0,-0,0,color);
+  FireShot(0);
+  if(t==1){color=kAQUA04;}else{color=AQUA04;}
+  ascent(i in 0..6){ascent(h in 0..3){
+   let w=1;loop(2){
+   CreateShotA(0,GetX,GetY,0);
+   let spd=4-(i+1)/2;
+   let ang=GetAngleToPlayer+i*30/5*w;
+   SetShotDataA(0,0,spd,GetAngleToPlayer,0,-spd/60,0,color);
+   spd=1.2+i/2-0.4*h;
+   SetShotDataA(0,60,spd,ang,0,-0,0,color);
+   FireShot(0);
+   w*=-1;}
+  }}
+}
+}
+
+task shot05{
+  loop{
+   sh(1);
+   wait(240);
+   sh(0);
+   wait(240);
+  }
+function sh(t){
+  let color;
+  let x;let y;
+  let d=10;
+  let dir=180;
+  let i=0;
+  let a;
+  if(t==1){a=96;}
+  else{a=-48;}
+  loop(600){
+   let c=(dir%360+360)%360;
+   if(c<90 || c>270){
+    if(t==1){color=RED23;}
+    else{color=PURPLE23;}
+   }else{
+    if(t==1){color=kRED23;}
+    else{color=kVIOLET23;}
+   }
+   x=GetX+cos(dir)*d;y=GetY+sin(dir)*d;
+   CreateShotA(0,x,y,10);
+   SetShotDataA(0,0,0,dir,0,-0,0,color);
+   SetShotDataA(0,240-2*i/6,0,dir,0,2/60,2,color);
+   if(i%2){
+    SetShotDataA(0,300-2*i/6,NULL,dir,0,-2/60,0,color);
+    let ang=dir+180+rand(-3,3);
+    SetShotDataA(0,360-2*i/6,3,ang,0,-0,0,color);
+   }
+   FireShot(0);
+   dir-=360/a;
+   dir-=(360/96*2/3)/a;
+   d+=10/96;
+   i++;
+  if(!(i%5)){yield;}}
+}
+}
+
+task shot04{
+  loop{
+   sh(1,kBLUE01);
+   wait(40);
+   sh(-1,BLUE01);
+   wait(120);
+  }
+function sh(w,c){
+  ascent(i in 0..28){
+   ascent(h in 0..4){
+   CreateShotA(0,GetX,GetY,10);
+   let dir=h*90+(45-90/28*i)*w;
+   SetShotDataA(0,0,5,dir,0,-0,0,c);
+   if(i%2){
+    SetShotDataA(0,1+i,NULL,NULL,0,-3/20,2,c);
+   }else{
+    SetShotDataA(0,1+i,NULL,NULL,0,-3/20,2,c);
+    SetShotDataA(0,20+i,NULL,NULL,0,-2/30,0,c);
+    SetShotDirectionType(PLAYER);
+    SetShotDataA(0,50+i,0.5,0,0,4/60,4,c-2);
+    SetShotDirectionType(ABSOLUTE);
+   }
+   FireShot(0);
+  }
+  yield;}
+}
+}
+
+task shot03{
+  let i=0;
+  loop{
+   i++;
+   let dir=GetAngleToPlayer+i*360/48*17;
+   let c=(dir%360+360)%360;
+   if(c<90 || c>270){c=RED21;}
+   else{c=kRED21;}
+   SetShotColor(192,192,192);
+   CreateShot02(GetX+cos(dir)*20,GetY+sin(dir)*20,0,dir,2/60,2.5,c,10);
+   SetShotColor(255,255,255);
+   CreateShot02(GetX+cos(dir)*20,GetY+sin(dir)*20,0,dir,2.5/60,3,c,10);
+  if(!(i%3)){wait(3);}}
+}
+
+task shot02{
+  let t=-1;
+  loop{
+  t*=-1;
+  let dir=GetAngleToPlayer;
+  loop(30){
+   ascent(i in 0..3){
+    sh(dir-10+10*i,1);
+    sh(dir-10+10*i,-1);
+   }
+  wait(3);}
+  wait(30);
+  }
+task sh(dir,w){
+  let color;
+  if(t==1){
+  if(w==1){color=kRED12;}else{color=kBLUE12;}
+  }else{
+  if(w==1){color=RED12;}else{color=BLUE12;}
+  }
+  let a=120;
+  let hz=18;
+  CreateShotA(0,GetX,GetY,10);
+  SetShotDataA(0,0,5,dir+a/2*w,-a/hz*w,-0,0,color);
+  ascent(i in 1..21){
+   let h=-(i%2)*2+1;
+   SetShotDataA(0,hz*i,5,NULL,-a/hz*h*w,-0,0,color);
+  }
+  FireShot(0);
+}
+}
+
+task shot01{
+  loop{
+  ascent(i in 0..5){
+   CreateShot01(GetX,GetY,2+i/2,GetAngleToPlayer,kBLUE04,5);
+  }
+  wait(20);
+  ascent(i in 0..5){
+   CreateShot01(GetX,GetY,2+i/2,GetAngleToPlayer,BLUE04,5);
+  }
+  wait(20);
+  }
+}
+
+function wait(f){loop(f){yield;}}
+#include_function".\lib_kshot.txt"
+}
