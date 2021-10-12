@@ -2,7 +2,7 @@ extends Area2D
 class_name Bullet
 
 # Variables
-var ySpeed: int
+var ySpeed: int = 0
 var vel: Vector2
 var angle: float
 
@@ -14,7 +14,8 @@ onready var visiNoti = $VisiNoti
 
 func _ready():
 	#animSprite.play("Active")
-	visiNoti.connect("screen_exited", self, "_on_VisiNoti_screen_exited")
+	if !visiNoti.is_connected("screen_exited", self, "_on_VisiNoti_screen_exited"):
+		visiNoti.connect("screen_exited", self, "_on_VisiNoti_screen_exited")
 
 func _physics_process(delta: float) -> void:
 	#position += vel * delta

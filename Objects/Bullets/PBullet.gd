@@ -1,13 +1,14 @@
 extends Bullet
 
 
-
 func _ready():
-	ySpeed = -900
+	ySpeed = -1000
+	
+	# Angle set from Player
 	
 	vel = Vector2(0, ySpeed)
-	
-	animSprite.play("Active")
+	vel = vel.rotated(deg2rad(angle))
+	animSprite.rotate(deg2rad(angle))
 
 func _physics_process(delta: float) -> void:
 	position += vel * delta

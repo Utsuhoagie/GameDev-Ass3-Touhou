@@ -4,8 +4,8 @@ extends Enemy
 func _ready():
 	#animSprite.play("Default")
 	HP = 20
-	speed = 1200
-	decel = 25
+	speed = 0
+	decel = 0
 	
 	drops = {
 		P_Small: 4,
@@ -38,9 +38,5 @@ func fire():
 		get_tree().current_scene.add_child(bullet)
 
 func _on_FireTimer_timeout() -> void:
-	fire()
-	
-
-func _on_VisibilityNotifier2D_screen_entered() -> void:
-	pass # Replace with function body.
-
+	if active:
+		fire()

@@ -7,6 +7,8 @@ var currentPhase
 
 func _ready():
 	#animSprite.play("Default")
+	isBoss = true
+	
 	HP = 80
 	maxHP = 80
 	speed = 300

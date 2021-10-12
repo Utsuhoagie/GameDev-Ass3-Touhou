@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/circle.png-87408ea3baacb184a2706ad29e677a5a.stex"
+path="res://.import/circle.png-710efd013a49e9bb0d4ac4b4773bc59e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TH11 Assets/Danmakufu/kShot/circle.png"
-dest_files=[ "res://.import/circle.png-87408ea3baacb184a2706ad29e677a5a.stex" ]
+source_file="res://TH11 Assets/Danmakufu/Shot/circle.png"
+dest_files=[ "res://.import/circle.png-710efd013a49e9bb0d4ac4b4773bc59e.stex" ]
 
 [params]
 

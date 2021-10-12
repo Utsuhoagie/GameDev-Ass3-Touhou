@@ -1,19 +1,48 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Objects/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/Enemy/Boss.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Enemy/Enemy1.tscn" type="PackedScene" id=3]
 [ext_resource path="res://MainScene.gd" type="Script" id=4]
 [ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/Enemy/Enemy2.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 320, 320 )
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 320, 320 )
+current = true
+drag_margin_left = 0.0
+
+[node name="CameraDetect" type="Area2D" parent="Camera2D"]
+
+[node name="CameraColDetect" type="CollisionShape2D" parent="Camera2D/CameraDetect"]
+visible = false
+position = Vector2( -128, 0 )
+shape = SubResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 5 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 192, 576 )
+position = Vector2( 192, 512 )
 
 [node name="Enemy1" parent="." instance=ExtResource( 3 )]
-position = Vector2( 192, 32 )
+position = Vector2( 128, -104 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 320, -256 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 160, -448 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 224, -448 )
+
+[node name="Boss" parent="." instance=ExtResource( 2 )]
+position = Vector2( 192, -56 )

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/42.png-594b44162584e4c1e60e61ad4eb78bf2.stex"
+path="res://.import/42.png-227590db7b15ca1fd8499ec127853b49.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TH11 Assets/Danmakufu/kShot/ks_help/42.png"
-dest_files=[ "res://.import/42.png-594b44162584e4c1e60e61ad4eb78bf2.stex" ]
+source_file="res://TH11 Assets/Danmakufu/Shot/ks_help/42.png"
+dest_files=[ "res://.import/42.png-227590db7b15ca1fd8499ec127853b49.stex" ]
 
 [params]
 

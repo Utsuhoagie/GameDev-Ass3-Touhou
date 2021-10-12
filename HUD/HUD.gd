@@ -1,11 +1,15 @@
 extends Control
 
 # Variables
+var score: int = 0
+var power: float = 1.0
 var graze: int = 0
 var bossCutinTopPos = Vector2(0, -256)
 
 
 # Node refs
+onready var scoreCounter = $Score
+onready var powerCounter = $Power
 onready var lifeContainer = $LifeContainer
 onready var bombContainer = $BombContainer
 onready var grazeCounter = $Graze
@@ -30,15 +34,28 @@ func _ready() -> void:
 	for bomb in bombContainer.get_children():
 		bomb.queue_free()
 	
+	Signals.connect("playerPowerChanged", self, "_onPlayerPowerChanged")
 	Signals.connect("playerLivesChanged", self, "_onPlayerLivesChanged")
 	Signals.connect("playerBombsChanged", self, "_onPlayerBombsChanged")
 	Signals.connect("playerGraze", self, "_graze")
+	
+	Signals.connect("enemyDie", self, "_increasePoints")
+	
 	Signals.connect("bossPhaseCutin", self, "_onBossPhaseCutin")
 	Signals.connect("lose", self, "_lose")
 
 
 
 # ----- Resources ------------------------
+
+func _increasePoints(points: int):
+	score += points
+	scoreCounter.text = str(score)
+
+func _onPlayerPowerChanged(newPower: float):
+	power = newPower
+	powerCounter.text = "%.1f" % power
+
 
 func setLives(n: int):
 	for life in lifeContainer.get_children():
@@ -64,7 +81,7 @@ func _onPlayerBombsChanged(bombs: int):
 	
 func _graze():
 	graze += 1
-	grazeCounter.text = "Graze : %s" % graze
+	grazeCounter.text = str(graze)
 	
 	
 # ----- Gameplay --------------------

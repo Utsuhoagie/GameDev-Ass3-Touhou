@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Bullet",
 "language": "GDScript",
-"path": "res://BaseBullet.gd"
+"path": "res://Objects/Bullets/BaseBullet.gd"
 }, {
 "base": "Area2D",
 "class": "Enemy",

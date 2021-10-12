@@ -1,5 +1,6 @@
 extends Enemy
 
+var angle: float = 0.0
 
 func _ready():
 	#animSprite.play("Default")
@@ -9,7 +10,7 @@ func _ready():
 	
 	preloadBullet = preload("res://Objects/Bullets/EBullet1.tscn")
 	
-	fireInterval = 0.1
+	fireInterval = 0.3
 	fireTimer.start(fireInterval)
 	
 	
@@ -26,11 +27,13 @@ func fire():
 	for gun in firePos.get_children():
 		var bullet = preloadBullet.instance()
 		bullet.global_position = gun.global_position
-		bullet.angle = rand_range(-45.0, 45.0)
+		bullet.angle = angle
+		angle += 0
 		get_tree().current_scene.add_child(bullet)
 
 func _on_FireTimer_timeout() -> void:
-	fire()
+	if active:
+		fire()
 
 
 func _on_VisibilityNotifier2D_screen_entered() -> void:
