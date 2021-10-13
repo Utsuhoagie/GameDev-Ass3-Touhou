@@ -5,12 +5,20 @@ var angle: float = 0.0
 func _ready():
 	#animSprite.play("Default")
 	HP = 40
-	speed = 540
-	decel = 18
+	speed = 0
+	decel = 0
+	
+	drops = {
+		P_Small: 4,
+		P_Big: 0,
+		Bomb: 0,
+		Points: 50
+	}
+	
 	
 	preloadBullet = preload("res://Objects/Bullets/EBullet1.tscn")
 	
-	fireInterval = 0.3
+	fireInterval = 0.2
 	fireTimer.start(fireInterval)
 	
 	

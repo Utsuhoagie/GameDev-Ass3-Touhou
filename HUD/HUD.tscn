@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://HUD/TextureProgress.gd" type="Script" id=1]
 [ext_resource path="res://HUD/HUD.gd" type="Script" id=2]
+[ext_resource path="res://Basic Assets/white.png" type="Texture" id=3]
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -35,8 +37,8 @@ __meta__ = {
 [node name="LifeLabel" type="Label" parent="."]
 margin_left = 416.0
 margin_top = 144.0
-margin_right = 480.0
-margin_bottom = 176.0
+margin_right = 457.0
+margin_bottom = 158.0
 text = "Lives :"
 valign = 1
 __meta__ = {
@@ -56,8 +58,8 @@ __meta__ = {
 [node name="BombLabel" type="Label" parent="."]
 margin_left = 416.0
 margin_top = 208.0
-margin_right = 480.0
-margin_bottom = 240.0
+margin_right = 469.0
+margin_bottom = 222.0
 text = "Bombs :"
 valign = 1
 __meta__ = {
@@ -118,9 +120,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SepLine" type="Line2D" parent="."]
-position = Vector2( 256, 40 )
-points = PoolVector2Array( 128, 600, 128, -40 )
+[node name="SepLineL" type="Line2D" parent="."]
+position = Vector2( -128, -1152 )
+scale = Vector2( 1, 2.96914 )
+points = PoolVector2Array( 128, 603.543, 128, -43.1103 )
+width = 4.0
+default_color = Color( 0.4, 0.501961, 1, 1 )
+
+[node name="SepLineR" type="Line2D" parent="."]
+position = Vector2( 256, -1149.36 )
+scale = Vector2( 1, 2.96914 )
+points = PoolVector2Array( 128, 602.653, 128, -44 )
 width = 4.0
 default_color = Color( 0.4, 0.501961, 1, 1 )
 
@@ -128,5 +138,37 @@ default_color = Color( 0.4, 0.501961, 1, 1 )
 position = Vector2( 0, -256 )
 
 [node name="BossCutinTimer" type="Timer" parent="."]
+
+[node name="BossHP" type="TextureProgress" parent="."]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 368.0
+margin_bottom = 24.0
+value = 5.0
+texture_progress = ExtResource( 3 )
+nine_patch_stretch = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BossName" type="Label" parent="."]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 160.0
+margin_bottom = 64.0
+text = "<boss name>"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BossSpellContainer" type="HBoxContainer" parent="."]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 104.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="timeout" from="BossCutinTimer" to="." method="_on_BossCutinTimer_timeout"]

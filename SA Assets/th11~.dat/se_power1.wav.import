@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/se_power1.wav-0325427f65ede44f825be59c9d2e8f6b.sample"
+
+[deps]
+
+source_file="res://SA Assets/th11~.dat/se_power1.wav"
+dest_files=[ "res://.import/se_power1.wav-0325427f65ede44f825be59c9d2e8f6b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

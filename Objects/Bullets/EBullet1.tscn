@@ -1,24 +1,26 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Objects/Bullets/EBullet1.gd" type="Script" id=1]
-[ext_resource path="res://Assets/space_shooter_pack/Graphics/spritesheets/laser-bolts.png" type="Texture" id=2]
-
-[sub_resource type="AtlasTexture" id=1]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=2]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 16, 0, 16, 16 )
+[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/02.png" type="Texture" id=2]
+[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/06.png" type="Texture" id=3]
+[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/21.png" type="Texture" id=4]
+[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/23.png" type="Texture" id=5]
+[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/42.png" type="Texture" id=6]
+[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/13.png" type="Texture" id=7]
+[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/12.png" type="Texture" id=8]
+[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/24.png" type="Texture" id=9]
+[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/41.png" type="Texture" id=10]
+[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/05.png" type="Texture" id=11]
+[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/01.png" type="Texture" id=12]
+[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/04.png" type="Texture" id=13]
+[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/07.png" type="Texture" id=14]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
-"loop": true,
+"frames": [ ExtResource( 12 ), ExtResource( 2 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 3 ), ExtResource( 14 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 6 ) ],
+"loop": false,
 "name": "Active",
-"speed": 3.5
+"speed": 0.0
 } ]
 
 [sub_resource type="CircleShape2D" id=4]
@@ -31,10 +33,8 @@ script = ExtResource( 1 )
 
 [node name="AnimSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1.05112, -0.840897 )
-scale = Vector2( 2, 2 )
 frames = SubResource( 3 )
 animation = "Active"
-frame = 1
 
 [node name="ColShape" type="CollisionShape2D" parent="."]
 shape = SubResource( 4 )

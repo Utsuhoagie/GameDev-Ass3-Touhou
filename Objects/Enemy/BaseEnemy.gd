@@ -36,6 +36,8 @@ func _ready() -> void:
 	animSprite.play("Active")
 
 func _process(delta: float) -> void:
+	
+	# Delay damage taken
 	if isDamaged and isDamagedTimer > 0:
 		isDamagedTimer -= 1
 	else:
@@ -46,39 +48,60 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if speed < decel:
+	if speed == 0:
+		return
+	elif speed < decel*4:
 		speed = 0
 		return
 		
 	position.y += speed * delta
 	speed -= decel
+	
 
-func reduceHP(damage: int):
+func reduceHP(damage: int):	# only works for base enemies!!!
 	if active:
+		if HP <= 0:			# already dead, prevent double bullets!
+			return
+		
 		isDamaged = true
 		animSprite.animation = "Damaged"
+		
 		HP -= damage
 		if HP <= 0:
 			HP = 0
-			Signals.emit_signal("enemyDie", 10)
+			Signals.emit_signal("enemyDie", drops[Points])
+			drop_items()
 			queue_free()
 
+func drop_items():
+	pass
 
 func _on_VisiNoti_screen_entered() -> void:
 	pass
 
 func _on_VisiNoti_screen_exited() -> void:
-	print("Base enemy exited!")
 	queue_free()
 
 
 func _on_BaseEnemy_area_entered(area: Area2D) -> void:
 	# activate when enter Camera2D
-	
-	if area.name == "CameraDetect":
-		print("Enemy entered " + area.name + " | Position: " + str(position))
-		active = true
+	if area.name == "MoveDetect":	# start moving enemies, activate NORMAL enemies
+		if isBoss:		# boss speed
+			speed = 400
+			decel = 15
+		else:			# normal speed, also activate
+			active = true
+			speed = 0
+			decel = 0
 		
+	elif area.name == "BossDetect":	# stop camera scroll, activate boss
 		if isBoss:
+			print("%s entered BossDetect | Position: %s" % [self.name, position])
+			active = true
+		
+			Signals.emit_signal("bossEntered", self.bossName)
+			
 			var mainScene = get_node("/root/MainScene")
 			mainScene.cameraScrollSpeed = 0
+			self.speed = 0
+			self.decel = 0

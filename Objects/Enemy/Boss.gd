@@ -2,62 +2,119 @@ extends Enemy
 
 var maxHP: int
 
-enum Phase { NonSpell_1, Spell_1, NonSpell_2, Spell_2 }
+export var bossName: String
+enum Phase { NonSpell_1, Spell_1, NonSpell_2, Spell_2, Spell_3 }
+var spellCount: int
 var currentPhase
+var changingPhase: bool = false
+
+var angle: float = 0.0
 
 func _ready():
-	#animSprite.play("Default")
+	init(bossName)
+	
+func init(_bossName: String):
+	
+	# Basic boss stats
 	isBoss = true
+	speed = 0
+	decel = 0
 	
-	HP = 80
-	maxHP = 80
-	speed = 300
-	decel = 5
-	
+	# Boss' bullets
 	preloadBullet = preload("res://Objects/Bullets/EBullet1.tscn")
 	
-	fireInterval = 0.4
-	fireTimer.start(fireInterval)
+	# Boss-specific stats
+	bossName = _bossName
 	
+	if bossName == "Satori":
+		HP = 10
+		maxHP = 10
+		spellCount = 2
+		fireInterval = 0.3
+		
+		drops = {
+			P_Small: 0,
+			P_Big: 1,
+			Bomb: 1,
+			Points: 2500
+		}
+		
+	elif bossName == "Okuu":
+		HP = 150
+		maxHP = 150
+		spellCount = 3
+		fireInterval = 0.2
+		
+		drops = {
+			P_Small: 0,
+			P_Big: 0,
+			Bomb: 0,
+			Points: 5000
+		}
+	
+	
+	# Signals
+	Signals.emit_signal("bossHPChanged", HP, maxHP)
+	Signals.emit_signal("bossSpellsChanged", spellCount)
+	Signals.connect("bossPhaseCutinEnd", self,"_onBossPhaseCutinEnd")
 	currentPhase = Phase.NonSpell_1
 	
-
+	fireTimer.start(fireInterval)
 	
 func _process(delta: float) -> void:
-	if HP <= maxHP/2:
-		currentPhase = Phase.Spell_1
+	pass
 
 
 
 func fire():
-	randomize()
-	for gun in firePos.get_children():
-		if currentPhase == Phase.NonSpell_1:
-			var bullet = preloadBullet.instance()
-			bullet.global_position = gun.global_position
-			bullet.angle = 0
-			get_tree().current_scene.add_child(bullet)
-			
-		elif currentPhase == Phase.Spell_1:
-			var bullet = preloadBullet.instance()
-			bullet.global_position = gun.global_position
-			bullet.angle = rand_range(-45.0, 45.0)
-			fireInterval = 0.00001
-			fireTimer.start(fireInterval)
-			get_tree().current_scene.add_child(bullet)
+	if active and not changingPhase:
+		randomize()
+		
+		if bossName == "Satori":
+			for gun in firePos.get_children():
+				if currentPhase == Phase.NonSpell_1:
+					var bullet = preloadBullet.instance()
+					bullet.global_position = gun.global_position
+					bullet.angle = 0
+					get_tree().current_scene.add_child(bullet)
+					
+				elif currentPhase == Phase.Spell_1:
+					var bullet = preloadBullet.instance()
+					bullet.global_position = gun.global_position
+					bullet.angle = angle
+					angle += 185
+					fireInterval = 0.016
+					fireTimer.start(fireInterval)
+					get_tree().current_scene.add_child(bullet)
 
 func reduceHP(damage: int):
-	isDamaged = true
-	animSprite.animation = "Damaged"
+	if active and not changingPhase:
+		isDamaged = true
+		animSprite.animation = "Damaged"
 	
-	HP -= damage
-	if HP <= 0:
-		HP = 0
-		queue_free()
-	elif HP <= 70 and currentPhase == Phase.NonSpell_1:
-		currentPhase = Phase.Spell_1
-		Signals.emit_signal("bossPhaseCutin", currentPhase)
+		if HP <= 0:
+			return
 	
+		HP -= damage
+		Signals.emit_signal("bossHPChanged", HP, maxHP)
+		
+		# ------ Phase transition --------------------
+		if HP <= 0:
+			HP = 0
+			Signals.emit_signal("enemyDie", drops[Points])
+			Signals.emit_signal("bossDied", bossName)
+			drop_items()
+			queue_free()
+		elif HP <= maxHP/2 and currentPhase == Phase.NonSpell_1:
+			#currentPhase = Phase.Spell_1
+			spellCount -= 1
+			changingPhase = true
+			Signals.emit_signal("bossSpellsChanged", spellCount)
+			Signals.emit_signal("bossPhaseCutin", Phase.Spell_1)
+	
+func _onBossPhaseCutinEnd(newPhase):
+	changingPhase = false
+	currentPhase = newPhase
 
 func _on_FireTimer_timeout() -> void:
 	fire()

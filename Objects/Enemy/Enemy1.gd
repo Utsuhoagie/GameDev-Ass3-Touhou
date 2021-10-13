@@ -1,6 +1,7 @@
 extends Enemy
 
 
+
 func _ready():
 	#animSprite.play("Default")
 	HP = 20
@@ -14,11 +15,10 @@ func _ready():
 		Points: 10
 	}
 	
-	print(drops)
 	
 	preloadBullet = preload("res://Objects/Bullets/EBullet1.tscn")
 	
-	fireInterval = 0.3
+	fireInterval = 0.5
 	fireTimer.start(fireInterval)
 	
 	

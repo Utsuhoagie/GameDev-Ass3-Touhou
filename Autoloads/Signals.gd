@@ -17,4 +17,14 @@ signal enemyDie(points)				# points: int
 
 # Gameplay
 
+signal bossEntered(bossName)		# bossName: str 
+
+signal bossHPChanged(HP, maxHP)		# HP, maxHP: int
+
+signal bossSpellsChanged(newSpells) # newSpells: int
+
 signal bossPhaseCutin(newPhase)		# newPhase: enum Phase
+
+signal bossPhaseCutinEnd(newPhase)	# newPhase: enum Phase
+
+signal bossDied(points)				# points: int
