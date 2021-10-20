@@ -1,30 +1,47 @@
 extends Node
 
-signal lose()
+signal gameOver()
+
+# Options menu
+
+#signal playerLifeSetup(lives)		# lives: int
+#signal playerBombSetup(bombs)		# bombs: int
 
 # Player stats
 
-signal playerPowerChanged(power)	# power: float
+signal playerPointsChanged(points)	# points: int		ADDITION
+signal enemyDie(points)				# points: int		ADDITION
 
-signal playerLivesChanged(lives)	# lives: int
+signal playerPowerChanged(power)	# power: float		CURRENT
 
-signal playerBombsChanged(bombs)	# bombs: int
+signal playerLivesChanged(lives)	# lives: int		CURRENT
 
-signal playerGraze()
+signal playerBombsChanged(bombs)	# bombs: int		CURRENT
 
-signal enemyDie(points)				# points: int
+signal playerGraze()				#					ADDITION
 
+signal bombExploded()
 
 # Gameplay
+
+signal cameraStopped(camSpeed)		# camSpeed: float	CURRENT
 
 signal bossEntered(bossName)		# bossName: str 
 
 signal bossHPChanged(HP, maxHP)		# HP, maxHP: int
 
-signal bossSpellsChanged(newSpells) # newSpells: int
+signal bossSpellsChanged(bossName, newSpells) 	# bossName: String; newSpells: int
 
-signal bossPhaseCutin(newPhase)		# newPhase: enum Phase
+signal bossPhaseCutin(bossName, newPhase)		# bossName: String; newPhase: enum Phase
 
-signal bossPhaseCutinEnd(newPhase)	# newPhase: enum Phase
+signal bossPhaseCutinEnd(bossName, newPhase)	# bossName: String; newPhase: enum Phase
 
-signal bossDied(points)				# points: int
+signal bossDied(bossName)			# bossName: String
+
+# Satori
+
+signal satoriS1Homing(playerPos)	# playerPos: Vector2
+
+# Okuu
+
+signal okuuLSStartFreeing()

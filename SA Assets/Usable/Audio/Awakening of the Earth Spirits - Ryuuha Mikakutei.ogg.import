@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Awakening of the Earth Spirits - Ryuuha Mikakutei.ogg-4bad60cef53df366c65be9a8ebe5acd6.oggstr"
+
+[deps]
+
+source_file="res://SA Assets/Usable/Audio/Awakening of the Earth Spirits - Ryuuha Mikakutei.ogg"
+dest_files=[ "res://.import/Awakening of the Earth Spirits - Ryuuha Mikakutei.ogg-4bad60cef53df366c65be9a8ebe5acd6.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

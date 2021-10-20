@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/se_invalid.wav-fc11dc1380b40058d659f59b3cb1bcee.sample"
+
+[deps]
+
+source_file="res://SA Assets/Usable/Sound/se_invalid.wav"
+dest_files=[ "res://.import/se_invalid.wav-fc11dc1380b40058d659f59b3cb1bcee.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

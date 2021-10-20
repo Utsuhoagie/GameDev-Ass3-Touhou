@@ -1,0 +1,134 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Objects/Enemy/Boss.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/Enemy/BossSatori.gd" type="Script" id=2]
+[ext_resource path="res://SA Assets/Usable/Bosses/satori.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 96, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 144, 0, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 64, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 48, 64, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 96, 64, 48, 64 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 144, 64, 48, 64 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "Default",
+"speed": 2.6
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 24, 48 )
+
+[node name="BossSatori" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="AnimSprite" parent="." index="0"]
+scale = Vector2( 1.5, 1.5 )
+frames = SubResource( 9 )
+animation = "Default"
+
+[node name="ColShape" parent="." index="3"]
+shape = SubResource( 10 )
+
+[node name="VisiNoti" parent="." index="5"]
+position = Vector2( 8.58307e-06, -3.45707e-06 )
+scale = Vector2( 8, 9.6 )
+
+[node name="Non1" type="Node2D" parent="Attacks" index="0"]
+
+[node name="Gun1" type="Node2D" parent="Attacks/Non1" index="0"]
+position = Vector2( 0, 48 )
+
+[node name="Gun2" type="Node2D" parent="Attacks/Non1" index="1"]
+position = Vector2( 40, 24 )
+rotation = -1.0472
+
+[node name="Gun3" type="Node2D" parent="Attacks/Non1" index="2"]
+position = Vector2( 40, -24 )
+rotation = -2.0944
+
+[node name="Gun4" type="Node2D" parent="Attacks/Non1" index="3"]
+position = Vector2( 0, -48 )
+rotation = -3.14159
+
+[node name="Gun5" type="Node2D" parent="Attacks/Non1" index="4"]
+position = Vector2( -40, -24 )
+rotation = 2.0944
+
+[node name="Gun6" type="Node2D" parent="Attacks/Non1" index="5"]
+position = Vector2( -40, 24 )
+rotation = 1.0472
+
+[node name="Spell1" type="Node2D" parent="Attacks" index="1"]
+
+[node name="Gun0" type="Node2D" parent="Attacks/Spell1" index="0"]
+
+[node name="Gun1" type="Node2D" parent="Attacks/Spell1" index="1"]
+position = Vector2( -160, 64 )
+
+[node name="Gun2" type="Node2D" parent="Attacks/Spell1" index="2"]
+position = Vector2( -96, 80 )
+
+[node name="Gun3" type="Node2D" parent="Attacks/Spell1" index="3"]
+position = Vector2( -32, 88 )
+
+[node name="Gun4" type="Node2D" parent="Attacks/Spell1" index="4"]
+position = Vector2( 32, 88 )
+
+[node name="Gun5" type="Node2D" parent="Attacks/Spell1" index="5"]
+position = Vector2( 96, 80 )
+
+[node name="Gun6" type="Node2D" parent="Attacks/Spell1" index="6"]
+position = Vector2( 160, 64 )
+
+[node name="Gun7" type="Node2D" parent="Attacks/Spell1" index="7"]
+position = Vector2( 96, 80 )
+
+[node name="Gun8" type="Node2D" parent="Attacks/Spell1" index="8"]
+position = Vector2( 32, 88 )
+
+[node name="Gun9" type="Node2D" parent="Attacks/Spell1" index="9"]
+position = Vector2( -32, 88 )
+
+[node name="Gun10" type="Node2D" parent="Attacks/Spell1" index="10"]
+position = Vector2( -96, 80 )
+
+[node name="Spell2" type="Node2D" parent="Attacks" index="2"]
+
+[node name="Gun1" type="Node2D" parent="Attacks/Spell2" index="0"]

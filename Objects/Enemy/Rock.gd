@@ -1,22 +1,22 @@
 extends Enemy
 
 
-
 func _ready():
-	#animSprite.play("Default")
-	HP = 150
+	HP = 100
+	isRock = true
+
+	score = 100
+	drops = {
+		SDrop: 5,
+		P_Small: 0,
+		P_Big: 1,
+		Bomb: 1,
+		Life: 0
+	}
+	
+func _setSpeeds():
 	speed = 0
 	decel = 0
 	
-	drops = {
-		P_Small: 4,
-		P_Big: 1,
-		Bomb: 1,
-		Points: 100
-	}
-	
-
-	
 func _process(delta: float) -> void:
-	pass
-	#print(fireTimer.wait_time)
+	rotate(deg2rad(0.6))

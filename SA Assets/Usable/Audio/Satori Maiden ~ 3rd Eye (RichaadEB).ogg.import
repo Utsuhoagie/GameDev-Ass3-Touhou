@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Satori Maiden ~ 3rd Eye (RichaadEB).ogg-dedc7ae3dd7d2e7c2a1949ab276fd2c5.oggstr"
+
+[deps]
+
+source_file="res://SA Assets/Usable/Audio/Satori Maiden ~ 3rd Eye (RichaadEB).ogg"
+dest_files=[ "res://.import/Satori Maiden ~ 3rd Eye (RichaadEB).ogg-dedc7ae3dd7d2e7c2a1949ab276fd2c5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

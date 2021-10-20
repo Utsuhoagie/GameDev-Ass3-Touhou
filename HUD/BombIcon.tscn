@@ -1,11 +1,10 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Assets/space_shooter_pack/Graphics/spritesheets/bomb.png" type="Texture" id=1]
+[ext_resource path="res://SA Assets/Usable/PlayerBombIcon.png" type="Texture" id=1]
 
 [node name="BombIcon" type="TextureRect"]
-margin_right = 32.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
+margin_right = 28.0
+margin_bottom = 28.0
 texture = ExtResource( 1 )
 stretch_mode = 1
 __meta__ = {

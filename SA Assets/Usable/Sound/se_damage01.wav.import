@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/se_damage01.wav-594775e11804434c44a9f6f7cfd96362.sample"
+
+[deps]
+
+source_file="res://SA Assets/Usable/Sound/se_damage01.wav"
+dest_files=[ "res://.import/se_damage01.wav-594775e11804434c44a9f6f7cfd96362.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

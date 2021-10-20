@@ -1,40 +1,51 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Objects/Enemy/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/Enemy/Boss.gd" type="Script" id=2]
-[ext_resource path="res://Assets/space_shooter_pack/Graphics/spritesheets/enemy-big.png" type="Texture" id=3]
+[ext_resource path="res://SA Assets/Usable/Bosses/BossDieExplode.png" type="Texture" id=4]
+[ext_resource path="res://SA Assets/Usable/EnemyDieExplode2.png" type="Texture" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 32, 32, 32 )
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 32, 32, 32, 32 )
+atlas = ExtResource( 5 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 32, 32 )
+atlas = ExtResource( 5 )
+region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = ExtResource( 3 )
-region = Rect2( 32, 0, 32, 32 )
+atlas = ExtResource( 5 )
+region = Rect2( 96, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 96, 96 )
+
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
-"loop": true,
-"name": "Damaged",
-"speed": 5.0
+"frames": [ null, SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": false,
+"name": "Explode",
+"speed": 30.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "Active",
-"speed": 1.2
+"frames": [ SubResource( 6 ), SubResource( 6 ), SubResource( 6 ) ],
+"loop": false,
+"name": "Implode",
+"speed": 5.0
 } ]
 
 [node name="Boss" instance=ExtResource( 1 )]
@@ -42,21 +53,18 @@ script = ExtResource( 2 )
 
 [node name="AnimSprite" parent="." index="0"]
 scale = Vector2( 2, 2 )
-frames = SubResource( 5 )
-animation = "Damaged"
 
-[node name="ColPoly" type="CollisionPolygon2D" parent="." index="1"]
-visible = false
-polygon = PoolVector2Array( -15.0589, 4.7271, -23.411, 11.6316, -25.861, 11.6316, -26.5292, 18.9815, -18.3997, 31.6768, -12.2748, 31.6768, -7.59758, 26.6655, -4.14535, 30.2291, 5.32045, 30.1177, 8.43859, 27.2223, 11.7795, 31.6768, 17.9044, 31.6768, 26.2566, 19.4269, 26.1452, 11.7429, 23.2498, 11.8543, 14.2294, 5.50664, 13.3385, -0.0614777, 17.9044, -0.506924, 15.8999, -6.07504, -0.247669, -9.52728, -16.3952, -6.85458, -18.6225, 0.0498848, -14.0566, 0.383972 )
+[node name="BossDieExplode" type="AnimatedSprite" parent="." index="1"]
+scale = Vector2( 2, 2 )
+frames = SubResource( 7 )
+animation = "Explode"
 
 [node name="FireTimer" type="Timer" parent="." index="2"]
 
-[node name="Gun" type="Node2D" parent="FirePos" index="0"]
-position = Vector2( 0, 30.7559 )
+[node name="ColShape" type="CollisionShape2D" parent="." index="3"]
 
-[node name="VisiNoti" parent="." index="4"]
-visible = true
-position = Vector2( 0.099205, 2.48032 )
-scale = Vector2( 2.7211, 3.01874 )
+[node name="Attacks" type="Node2D" parent="." index="6"]
 
+[connection signal="area_exited" from="." to="." method="_on_Boss_area_exited"]
+[connection signal="animation_finished" from="BossDieExplode" to="." method="_on_BossDieExplode_animation_finished"]
 [connection signal="timeout" from="FireTimer" to="." method="_on_FireTimer_timeout"]

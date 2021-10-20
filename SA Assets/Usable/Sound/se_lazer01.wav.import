@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/se_lazer01.wav-9b3ffbfc54c23b77e041c67b22ee6b63.sample"
+
+[deps]
+
+source_file="res://SA Assets/Usable/Sound/se_lazer01.wav"
+dest_files=[ "res://.import/se_lazer01.wav-9b3ffbfc54c23b77e041c67b22ee6b63.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

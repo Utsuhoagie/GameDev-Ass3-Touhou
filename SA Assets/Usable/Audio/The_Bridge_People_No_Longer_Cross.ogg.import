@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/The_Bridge_People_No_Longer_Cross.ogg-8d27ea2b3707daf93899a880c988c857.oggstr"
+
+[deps]
+
+source_file="res://SA Assets/Usable/Audio/The_Bridge_People_No_Longer_Cross.ogg"
+dest_files=[ "res://.import/The_Bridge_People_No_Longer_Cross.ogg-8d27ea2b3707daf93899a880c988c857.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

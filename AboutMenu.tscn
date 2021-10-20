@@ -1,0 +1,184 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://SA Assets/Usable/Backgrounds/about.png" type="Texture" id=1]
+[ext_resource path="res://Atarian/SF Atarian System.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Atarian/SF Atarian System Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://SA Assets/Usable/Menu/Quit.png" type="Texture" id=4]
+[ext_resource path="res://SA Assets/Usable/Menu/Quit1.png" type="Texture" id=5]
+[ext_resource path="res://AboutMenu.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 22
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 26
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 20
+font_data = ExtResource( 2 )
+
+[node name="AboutMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextRows" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -288.0
+margin_top = -328.0
+margin_right = 288.0
+custom_constants/separation = 16
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Me" type="VBoxContainer" parent="TextRows"]
+margin_right = 576.0
+margin_bottom = 69.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="TextRows/Me"]
+margin_right = 576.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 1 )
+text = "Developed by Nguyen Thien Dang (1811915)"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="TextRows/Me"]
+margin_top = 23.0
+margin_right = 576.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 1 )
+text = "Game Development Assignment 3"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="TextRows/Me"]
+margin_top = 46.0
+margin_right = 576.0
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 1 )
+text = "Using: Godot Engine 3.3.4"
+align = 1
+valign = 1
+
+[node name="Credits" type="VBoxContainer" parent="TextRows"]
+margin_top = 85.0
+margin_right = 576.0
+margin_bottom = 320.0
+custom_constants/separation = 5
+
+[node name="Label" type="Label" parent="TextRows/Credits"]
+margin_right = 576.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 3 )
+text = "CREDITS"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="TextRows/Credits"]
+margin_top = 32.0
+margin_right = 576.0
+margin_bottom = 53.0
+custom_fonts/font = SubResource( 2 )
+text = " Touhou 11 & 13.5 (ZUN) - Game sprites/backgrounds, Stage 1 & Game Over BGM, SFX"
+align = 1
+valign = 1
+
+[node name="Label6" type="Label" parent="TextRows/Credits"]
+margin_top = 58.0
+margin_right = 576.0
+margin_bottom = 79.0
+custom_fonts/font = SubResource( 2 )
+text = "RichaadEB - Boss 1 BGM"
+align = 1
+valign = 1
+
+[node name="Label7" type="Label" parent="TextRows/Credits"]
+margin_top = 84.0
+margin_right = 576.0
+margin_bottom = 105.0
+custom_fonts/font = SubResource( 2 )
+text = "C-CLAYS - Stage 2 BGM"
+align = 1
+valign = 1
+
+[node name="Label8" type="Label" parent="TextRows/Credits"]
+margin_top = 110.0
+margin_right = 576.0
+margin_bottom = 131.0
+custom_fonts/font = SubResource( 2 )
+text = "FalKKonE - Final Boss BGM"
+align = 1
+valign = 1
+
+[node name="Label9" type="Label" parent="TextRows/Credits"]
+margin_top = 136.0
+margin_right = 576.0
+margin_bottom = 157.0
+custom_fonts/font = SubResource( 2 )
+text = "Ryuuha Mikakutei - Menu BGM"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="TextRows/Credits"]
+margin_top = 162.0
+margin_right = 576.0
+margin_bottom = 183.0
+custom_fonts/font = SubResource( 2 )
+text = "SunnySideUp524 - Boss cut-in images"
+align = 1
+valign = 1
+
+[node name="Label5" type="Label" parent="TextRows/Credits"]
+margin_top = 188.0
+margin_right = 576.0
+margin_bottom = 209.0
+custom_fonts/font = SubResource( 2 )
+text = "Pixiv /37120 - Menu background"
+align = 1
+valign = 1
+
+[node name="Label4" type="Label" parent="TextRows/Credits"]
+margin_top = 214.0
+margin_right = 576.0
+margin_bottom = 235.0
+custom_fonts/font = SubResource( 2 )
+text = "Pixiv /10335896 - that pic up there"
+align = 1
+valign = 1
+
+[node name="Return" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -96.0
+margin_top = -56.0
+margin_right = -16.0
+margin_bottom = -16.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Return" to="." method="_on_Return_pressed"]

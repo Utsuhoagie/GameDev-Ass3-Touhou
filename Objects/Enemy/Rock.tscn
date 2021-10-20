@@ -1,47 +1,68 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Objects/Enemy/BaseEnemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Basic Assets/rock.png" type="Texture" id=2]
+[ext_resource path="res://SA Assets/enemy.png" type="Texture" id=2]
 [ext_resource path="res://Objects/Enemy/Rock.gd" type="Script" id=3]
+[ext_resource path="res://SA Assets/Usable/EnemyDieExplode2.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 128, 128 )
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 128, 0, 128, 128 )
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 128, 128 )
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 128, 128, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), null ],
 "loop": true,
-"name": "Damaged",
-"speed": 5.0
+"name": "Die",
+"speed": 24.0
 }, {
-"frames": [ SubResource( 3 ) ],
+"frames": [ SubResource( 6 ) ],
 "loop": true,
 "name": "Active",
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=5]
-radius = 62.6147
-
 [node name="Rock" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
 [node name="AnimSprite" parent="." index="0"]
-frames = SubResource( 4 )
-animation = "Damaged"
+position = Vector2( -1.90735e-06, 1.90735e-06 )
+scale = Vector2( 1.25, 1.25 )
+frames = SubResource( 7 )
+animation = "Active"
 
-[node name="ColShape" type="CollisionShape2D" parent="." index="1"]
+[node name="ColShape" type="CollisionPolygon2D" parent="." index="1"]
+visible = false
 position = Vector2( 0, 0.529732 )
-shape = SubResource( 5 )
+polygon = PoolVector2Array( -12.9975, -25.6887, -4.94406, -32.2438, 9.85172, -24.565, 17.9051, -21.3811, 22.7746, -14.4514, 29.7043, -9.20735, 33.4501, 1.09351, 36.8212, 5.40114, 36.0721, 11.9562, 9.66443, 33.1198, -4.56949, 29.5613, -12.2483, 32.9325, -24.2348, 31.4342, -34.5356, 21.5079, -33.4119, 14.0164, -35.2848, 1.46809, -32.4754, -11.6421 )
+
+[node name="VisiNoti" parent="." index="3"]
+visible = true
+position = Vector2( -2.38419e-06, 4 )
+scale = Vector2( 4, 3.6 )

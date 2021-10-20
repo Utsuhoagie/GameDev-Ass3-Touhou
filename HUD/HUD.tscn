@@ -1,8 +1,53 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://HUD/TextureProgress.gd" type="Script" id=1]
 [ext_resource path="res://HUD/HUD.gd" type="Script" id=2]
-[ext_resource path="res://Basic Assets/white.png" type="Texture" id=3]
+[ext_resource path="res://SA Assets/white.png" type="Texture" id=3]
+[ext_resource path="res://SA Assets/Usable/Backgrounds/game.png" type="Texture" id=4]
+[ext_resource path="res://SA Assets/Usable/Bosses/nukeCaution.png" type="Texture" id=5]
+[ext_resource path="res://droid-sans/DroidSans.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://droid-sans/DroidSans.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 22
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://droid-sans/DroidSans.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 22
+font_data = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 18
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 18
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 22
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 22
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 22
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 22
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 18
+font_data = ExtResource( 6 )
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -12,12 +57,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="GameBG" type="TextureRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -640.0
+margin_bottom = 640.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ScoreLabel" type="Label" parent="."]
-margin_left = 416.0
-margin_top = 16.0
-margin_right = 480.0
-margin_bottom = 48.0
-text = "Score :"
+margin_left = 400.0
+margin_top = 32.0
+margin_right = 467.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 2 )
+text = "Score:"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -25,9 +81,10 @@ __meta__ = {
 
 [node name="Score" type="Label" parent="."]
 margin_left = 472.0
-margin_top = 16.0
+margin_top = 32.0
 margin_right = 600.0
-margin_bottom = 48.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 4 )
 text = "0"
 valign = 1
 __meta__ = {
@@ -35,63 +92,67 @@ __meta__ = {
 }
 
 [node name="LifeLabel" type="Label" parent="."]
-margin_left = 416.0
-margin_top = 144.0
-margin_right = 457.0
-margin_bottom = 158.0
-text = "Lives :"
+margin_left = 400.0
+margin_top = 152.0
+margin_right = 456.0
+margin_bottom = 179.0
+custom_fonts/font = SubResource( 5 )
+text = "Lives:"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LifeContainer" type="HBoxContainer" parent="."]
-margin_left = 480.0
-margin_top = 136.0
-margin_right = 608.0
+margin_left = 464.0
+margin_top = 152.0
+margin_right = 624.0
 margin_bottom = 184.0
-custom_constants/separation = 8
+custom_constants/separation = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BombLabel" type="Label" parent="."]
-margin_left = 416.0
-margin_top = 208.0
-margin_right = 469.0
-margin_bottom = 222.0
-text = "Bombs :"
+margin_left = 400.0
+margin_top = 216.0
+margin_right = 468.0
+margin_bottom = 240.0
+custom_fonts/font = SubResource( 6 )
+text = "Bombs:"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BombContainer" type="HBoxContainer" parent="."]
-margin_left = 480.0
-margin_top = 208.0
-margin_right = 608.0
-margin_bottom = 240.0
-custom_constants/separation = 8
+margin_left = 464.0
+margin_top = 216.0
+margin_right = 624.0
+margin_bottom = 248.0
+custom_constants/separation = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PowerLabel" type="Label" parent="."]
-margin_left = 416.0
+margin_left = 400.0
 margin_top = 288.0
-margin_right = 544.0
+margin_right = 573.0
 margin_bottom = 320.0
-text = "Power :         / 4.0"
+custom_fonts/font = SubResource( 7 )
+text = "Power:         / 4.0"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Power" type="Label" parent="."]
-margin_left = 472.0
+margin_left = 480.0
 margin_top = 288.0
-margin_right = 504.0
+margin_right = 512.0
 margin_bottom = 320.0
+custom_fonts/font = SubResource( 8 )
 text = "1.0"
 valign = 1
 __meta__ = {
@@ -99,51 +160,39 @@ __meta__ = {
 }
 
 [node name="GrazeLabel" type="Label" parent="."]
-margin_left = 416.0
-margin_top = 320.0
-margin_right = 480.0
-margin_bottom = 352.0
-text = "Graze :"
+margin_left = 400.0
+margin_top = 352.0
+margin_right = 470.0
+margin_bottom = 384.0
+custom_fonts/font = SubResource( 9 )
+text = "Graze:"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Graze" type="Label" parent="."]
-margin_left = 472.0
-margin_top = 320.0
-margin_right = 512.0
-margin_bottom = 352.0
+margin_left = 480.0
+margin_top = 352.0
+margin_right = 492.0
+margin_bottom = 384.0
+custom_fonts/font = SubResource( 10 )
 text = "0"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SepLineL" type="Line2D" parent="."]
-position = Vector2( -128, -1152 )
-scale = Vector2( 1, 2.96914 )
-points = PoolVector2Array( 128, 603.543, 128, -43.1103 )
-width = 4.0
-default_color = Color( 0.4, 0.501961, 1, 1 )
-
-[node name="SepLineR" type="Line2D" parent="."]
-position = Vector2( 256, -1149.36 )
-scale = Vector2( 1, 2.96914 )
-points = PoolVector2Array( 128, 602.653, 128, -44 )
-width = 4.0
-default_color = Color( 0.4, 0.501961, 1, 1 )
-
 [node name="BossCutinSpawner" type="Node2D" parent="."]
-position = Vector2( 0, -256 )
+position = Vector2( 32, -256 )
 
 [node name="BossCutinTimer" type="Timer" parent="."]
 
 [node name="BossHP" type="TextureProgress" parent="."]
 margin_left = 16.0
-margin_top = 8.0
+margin_top = 16.0
 margin_right = 368.0
-margin_bottom = 24.0
+margin_bottom = 32.0
 value = 5.0
 texture_progress = ExtResource( 3 )
 nine_patch_stretch = true
@@ -154,9 +203,10 @@ __meta__ = {
 
 [node name="BossName" type="Label" parent="."]
 margin_left = 16.0
-margin_top = 32.0
-margin_right = 160.0
+margin_top = 40.0
+margin_right = 144.0
 margin_bottom = 64.0
+custom_fonts/font = SubResource( 11 )
 text = "<boss name>"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -164,9 +214,34 @@ __meta__ = {
 
 [node name="BossSpellContainer" type="HBoxContainer" parent="."]
 margin_left = 16.0
-margin_top = 48.0
+margin_top = 64.0
 margin_right = 104.0
-margin_bottom = 88.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+volume_db = -9.321
+bus = "Music"
+
+[node name="Sfx" type="AudioStreamPlayer" parent="."]
+volume_db = -22.214
+bus = "EnemyDie"
+
+[node name="Sfx2" type="AudioStreamPlayer" parent="."]
+bus = "Okuu"
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -7.61
+bus = "PlayerBomb"
+
+[node name="OkuuCaution" type="TextureRect" parent="."]
+visible = false
+margin_right = 384.0
+margin_bottom = 640.0
+texture = ExtResource( 5 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

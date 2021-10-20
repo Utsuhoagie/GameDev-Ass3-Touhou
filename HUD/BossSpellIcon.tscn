@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://TH11 Assets/Danmakufu/Shot/ks_help/42.png" type="Texture" id=1]
+[ext_resource path="res://SA Assets/Usable/BossSpellIcon.png" type="Texture" id=1]
+[ext_resource path="res://HUD/BossSpellIcon.gd" type="Script" id=2]
 
 [node name="BossSpellIcon" type="TextureRect"]
-margin_right = 32.0
-margin_bottom = 32.0
+margin_right = 16.0
+margin_bottom = 16.0
 texture = ExtResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

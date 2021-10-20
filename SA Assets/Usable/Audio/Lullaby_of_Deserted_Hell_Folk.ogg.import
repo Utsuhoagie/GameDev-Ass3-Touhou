@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Lullaby_of_Deserted_Hell_Folk.ogg-df9ef45670e0e92bf5f8fa47142b1b67.oggstr"
+
+[deps]
+
+source_file="res://SA Assets/Usable/Audio/Lullaby_of_Deserted_Hell_Folk.ogg"
+dest_files=[ "res://.import/Lullaby_of_Deserted_Hell_Folk.ogg-df9ef45670e0e92bf5f8fa47142b1b67.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

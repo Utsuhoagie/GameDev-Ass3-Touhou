@@ -3,40 +3,43 @@ extends Enemy
 
 
 func _ready():
-	#animSprite.play("Default")
-	HP = 20
-	speed = 0
-	decel = 0
+	HP = 30
+
 	
+	score = 20
 	drops = {
-		P_Small: 4,
+		SDrop: 3,
+		P_Small: 1,
 		P_Big: 0,
 		Bomb: 0,
-		Points: 10
+		Life: 0
 	}
 	
 	
-	preloadBullet = preload("res://Objects/Bullets/EBullet1.tscn")
-	
-	fireInterval = 0.5
+	fireInterval = 0.9
 	fireTimer.start(fireInterval)
 	
+func _setSpeeds():
+	randomize()
+	speed = rand_range(10,25)
+	decel = 0
+	angle = rand_range(10,30) * (1 if randi() % 2 == 0 else -1)
 	
 
-	
 func _process(delta: float) -> void:
 	pass
-	#print(fireTimer.wait_time)
 	
 
 
 func fire():
 	for gun in firePos.get_children():
-		var bullet = preloadBullet.instance()
+		var bullet = plBullets[Round].instance()
+		bullet.color = color.BLUE if randi() % 2 == 0 else color.PINK
 		bullet.global_position = gun.global_position
 		bullet.angle = 0
+		bullet.updateSpeed(144)
 		get_tree().current_scene.add_child(bullet)
 
 func _on_FireTimer_timeout() -> void:
-	if active:
+	if active and HP > 0:
 		fire()

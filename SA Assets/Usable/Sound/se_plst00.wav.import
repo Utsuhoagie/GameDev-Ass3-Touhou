@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/se_plst00.wav-22c2c86b3000eb7a50b6c1a1f55449f9.sample"
+
+[deps]
+
+source_file="res://SA Assets/Usable/Sound/se_plst00.wav"
+dest_files=[ "res://.import/se_plst00.wav-22c2c86b3000eb7a50b6c1a1f55449f9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

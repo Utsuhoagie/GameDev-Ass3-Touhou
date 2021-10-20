@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://SA Assets/Usable/Bullets/Enemy/cleanRound.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Bullets/Boss/S_roundCl.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": false,
+"name": "Default",
+"speed": 0.0
+} ]
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 24.0
+
+[node name="S_roundCl" type="Area2D"]
+collision_layer = 8
+collision_mask = 41
+script = ExtResource( 2 )
+
+[node name="AnimSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 6 )
+animation = "Default"
+frame = 1
+
+[node name="ColShape" type="CollisionShape2D" parent="."]
+shape = SubResource( 7 )
+
+[node name="VisiNoti" type="VisibilityNotifier2D" parent="."]
+scale = Vector2( 3.2, 3.2 )
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+volume_db = -15.036
+bus = "Okuu"
+
+[connection signal="area_entered" from="." to="." method="_on_S_roundCl_area_entered"]

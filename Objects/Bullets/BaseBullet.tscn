@@ -11,4 +11,4 @@ script = ExtResource( 1 )
 
 [node name="VisiNoti" type="VisibilityNotifier2D" parent="."]
 
-[connection signal="screen_exited" from="VisiNoti" to="." method="_on_VisiNoti_screen_exited"]
+[connection signal="area_exited" from="." to="." method="_on_BaseBullet_area_exited"]

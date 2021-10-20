@@ -1,52 +1,81 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://Assets/space_shooter_pack/Graphics/spritesheets/enemy-medium.png" type="Texture" id=1]
+[ext_resource path="res://SA Assets/enemy.png" type="Texture" id=1]
 [ext_resource path="res://Objects/Enemy/BaseEnemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Enemy/Enemy2.gd" type="Script" id=3]
+[ext_resource path="res://SA Assets/Usable/EnemyDieExplode2.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 16, 32, 16 )
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 32, 16, 32, 16 )
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 32, 16 )
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 32, 32 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 32, 0, 32, 16 )
+atlas = ExtResource( 4 )
+region = Rect2( 96, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 288, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 32, 288, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 64, 288, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 96, 288, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ) ],
-"loop": true,
-"name": "Damaged",
-"speed": 15.0
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), null ],
+"loop": false,
+"name": "Die",
+"speed": 30.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 4 ) ],
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": true,
 "name": "Active",
 "speed": 4.0
 } ]
 
+[sub_resource type="CircleShape2D" id=11]
+radius = 16.0
+
 [node name="Enemy2" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
 
 [node name="AnimSprite" parent="." index="0"]
-frames = SubResource( 5 )
+scale = Vector2( 1.2, 1.2 )
+frames = SubResource( 10 )
 animation = "Active"
 
-[node name="ColShape" type="CollisionPolygon2D" parent="." index="1"]
-visible = false
-polygon = PoolVector2Array( -11.0221, 7.16928, -7.08485, 7.24802, -6.61238, 5.98811, -4.17128, 5.98811, -0.155285, 8.19297, 3.62448, 6.30309, 6.14432, 6.1456, 6.85303, 7.24802, 10.3966, 7.16928, 16.3812, 3.86199, 16.2237, 1.97211, 10.3966, -0.154011, 7.16801, -0.311501, -0.155285, -7.71354, -7.71481, -0.705227, -9.68344, -0.390247, -15.7468, 1.81462, -15.9043, 3.7045 )
+[node name="ColShape" type="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 11 )
 
 [node name="FireTimer" type="Timer" parent="." index="2"]
 

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Enemy",
+"class": "Boss",
+"language": "GDScript",
+"path": "res://Objects/Enemy/Boss.gd"
+}, {
 "base": "Area2D",
 "class": "Bullet",
 "language": "GDScript",
@@ -18,21 +23,30 @@ _global_script_classes=[ {
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://Objects/Enemy/BaseEnemy.gd"
+}, {
+"base": "Area2D",
+"class": "Item",
+"language": "GDScript",
+"path": "res://Objects/Enemy/Item.gd"
 } ]
 _global_script_class_icons={
+"Boss": "",
 "Bullet": "",
-"Enemy": ""
+"Enemy": "",
+"Item": ""
 }
 
 [application]
 
-config/name="Shmup"
-run/main_scene="res://MainScene.tscn"
+config/name="Touhou"
+run/main_scene="res://DisclaimerScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Signals="*res://Autoloads/Signals.gd"
+GlobalVar="*res://Autoloads/GlobalVar.gd"
+MenuMusicController="*res://Autoloads/MenuMusicController.tscn"
 
 [display]
 
@@ -81,6 +95,16 @@ focus={
 bomb={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"unicode":0,"echo":false,"script":null)
+ ]
+}
+increase_scroll={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+decrease_scroll={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
  ]
 }
 

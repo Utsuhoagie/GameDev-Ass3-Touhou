@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/se_pause.wav-e7e9713c31295b08b4dd00feb4c4e99b.sample"
+
+[deps]
+
+source_file="res://SA Assets/Usable/Sound/se_pause.wav"
+dest_files=[ "res://.import/se_pause.wav-e7e9713c31295b08b4dd00feb4c4e99b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

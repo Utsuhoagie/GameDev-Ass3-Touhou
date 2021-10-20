@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/se_cat01.wav-5c079e234da5c3c7fbbd74739bc3f588.sample"
+
+[deps]
+
+source_file="res://SA Assets/Usable/Sound/se_cat01.wav"
+dest_files=[ "res://.import/se_cat01.wav-5c079e234da5c3c7fbbd74739bc3f588.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

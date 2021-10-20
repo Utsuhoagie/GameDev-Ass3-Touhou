@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/se_msl.wav-d76ab2c0e84900bbc9e7c97ee48dab71.sample"
+
+[deps]
+
+source_file="res://SA Assets/Usable/Sound/se_msl.wav"
+dest_files=[ "res://.import/se_msl.wav-d76ab2c0e84900bbc9e7c97ee48dab71.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
